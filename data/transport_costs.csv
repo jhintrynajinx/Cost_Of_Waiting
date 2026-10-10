@@ -1,0 +1,16 @@
+transport_mode,cost_per_trip_myr,avg_trips_per_day,source,year
+# Instructions: populate rows with real data.
+# Suggested sources:
+#   - Prasarana (RapidKL) published fare tables: https://www.prasarana.com.my
+#   - MyRapid bus and LRT fare structures
+#   - Grab Malaysia published base fares
+#   - JPJ (Road Transport Department) vehicle running cost estimates
+#   - AAM (Automobile Association of Malaysia) cost-per-km data
+#
+# Column definitions:
+#   transport_mode     : e.g. 'public_bus', 'lrt_mrt', 'commuter_ktm',
+#                         'grab_car', 'private_car', 'motorcycle', 'walking', 'cycling'
+#   cost_per_trip_myr  : average single-journey cost in MYR (float; 0.00 for walking/cycling)
+#   avg_trips_per_day  : typical number of one-way trips per day for this mode (float)
+#   source             : data source citation (string)
+#   year               : reference year (integer)

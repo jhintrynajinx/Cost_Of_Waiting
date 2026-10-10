@@ -1,0 +1,11 @@
+ï»¿Category,Item,Adult_Non_Obese_MYR_per_Month,Adult_Obese_MYR_per_Month,Child_MYR_per_Month,Adult_Obese_minus_Non_Obese_MYR_per_Month,Adult_Non_Obese_MYR_per_Year,Adult_Obese_MYR_per_Year,Child_MYR_per_Year,Assumption_Notes
+Fuel,Petrol (car/motorcycle),120,230,0,110,1440,2760,0,Children do not pay fuel costs; adult obese assumed to drive more and carry a higher load
+Public transport,LRT/MRT/bus fares,90,60,35,-30,1080,720,420,Children use public transport at concession/child fares; obese adults assumed to use it less
+Ride-hailing,Grab/taxi,40,150,0,110,480,1800,0,Children do not pay for ride-hailing; obese adults assumed to rely on door-to-door rides
+Parking & tolls,"Parking, tolls, Touch 'n Go",45,120,0,75,540,1440,0,Not applicable to children
+Vehicle upkeep,"Servicing, tyres, brakes",55,110,0,55,660,1320,0,Not applicable to children; higher car use raises wear for obese adults
+Vehicle ownership,Road tax + insurance (monthly equivalent),35,95,0,60,420,1140,0,Motorcycle-level vs car-level costs for adults; not applicable to children
+Active transport,"Bicycle maintenance, helmet, gear",15,0,10,-15,180,0,120,Children assumed to cycle often; non-obese adults cycle for short trips
+Walking,Walking (free),0,0,0,0,0,0,0,Free for all groups; children assumed to walk most for short trips
+Injury-related travel,Clinic/physio trips after injuries,10,40,5,30,120,480,60,Children assumed less prone to injury and more physically active; obese adults assumed more prone
+TOTAL,All categories,410,805,50,395,4920,9660,600,"Illustrative scenario estimates, not survey data; excludes vehicle loan instalments"

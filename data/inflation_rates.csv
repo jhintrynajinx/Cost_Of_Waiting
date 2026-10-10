@@ -1,0 +1,20 @@
+year,annual_rate,rate_type,source
+# Instructions: populate rows with real data.
+# Suggested sources:
+#   - Department of Statistics Malaysia (DOSM) — CPI annual change
+#     https://www.dosm.gov.my/portal-main/release-content/consumer-price-index-malaysia
+#   - Bank Negara Malaysia — Annual Reports and Economic/Monetary assessment
+#     https://www.bnm.gov.my
+#   - IMF World Economic Outlook database (for projections)
+#     https://www.imf.org/en/Publications/WEO
+#
+# Column definitions:
+#   year        : calendar year (integer), e.g. 2000
+#   annual_rate : CPI annual change as a decimal (float), e.g. 0.025 for 2.5%
+#   rate_type   : 'historical' for confirmed data, 'projected' for forward estimates
+#   source      : data source citation (string)
+#
+# Notes:
+#   - For years without data, the calculator will fall back to a default
+#     long-run average rate defined in calculator/inflation.py.
+#   - Populate at least 2000–2025 historical data before adding projections.

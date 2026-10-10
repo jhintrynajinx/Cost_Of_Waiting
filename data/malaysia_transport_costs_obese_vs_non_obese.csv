@@ -1,0 +1,9 @@
+ï»¿Category,Item,Non_Obese_MYR_per_Month,Obese_MYR_per_Month,Difference_MYR_per_Month,Non_Obese_MYR_per_Year,Obese_MYR_per_Year,Assumption_Notes
+Fuel,Petrol (car/motorcycle),120,230,110,1440,2760,"Non-obese: mostly short motorcycle trips; obese: more car use, less walking for short trips, higher load"
+Public transport,LRT/MRT/bus fares,90,60,-30,1080,720,Non-obese uses rail/bus plus walking to stations; obese assumed to use it less
+Ride-hailing,Grab/taxi,40,150,110,480,1800,Obese assumed to rely more on door-to-door rides for short distances
+Parking & tolls,"Parking, tolls, Touch 'n Go",45,120,75,540,1440,More driving means more tolls and parking
+Vehicle upkeep,"Servicing, tyres, brakes",55,110,55,660,1320,Heavier use of a car (vs motorcycle) raises wear and servicing costs
+Vehicle ownership,Road tax + insurance (monthly equivalent),35,95,60,420,1140,Motorcycle-level vs car-level road tax and insurance
+Active transport,"Bicycle maintenance, helmet, gear",15,0,-15,180,0,Non-obese assumed to cycle/walk for short trips
+TOTAL,All categories,400,765,365,4800,9180,Obese total is about 91% higher; excludes vehicle loan instalments

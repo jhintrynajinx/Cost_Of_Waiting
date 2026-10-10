@@ -1,0 +1,16 @@
+food_item,category,unit,price_myr,calories_per_unit,source,year
+# Instructions: populate rows with real data.
+# Suggested sources:
+#   - DOSM (Department of Statistics Malaysia) Consumer Price Index food sub-index
+#     https://www.dosm.gov.my
+#   - KPDNHEP (Ministry of Domestic Trade) price surveillance reports
+#   - Pasar Raya / major supermarket published price lists
+#
+# Column definitions:
+#   food_item         : name of the food item (string)
+#   category          : food group, e.g. 'grains', 'protein', 'vegetables', 'snacks', 'beverages'
+#   unit              : serving or purchase unit, e.g. '100g', '1 portion', '1 litre'
+#   price_myr         : retail price in Malaysian Ringgit (float)
+#   calories_per_unit : caloric content for the given unit (integer)
+#   source            : data source citation (string)
+#   year              : price reference year (integer)

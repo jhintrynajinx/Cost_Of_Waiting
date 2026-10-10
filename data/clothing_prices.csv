@@ -1,0 +1,15 @@
+item_type,size_category,price_myr,retailer,source,year
+# Instructions: populate rows with real data.
+# Suggested sources:
+#   - Major Malaysian retailers: Parkson, Padini, H&M Malaysia, Uniqlo Malaysia,
+#     mydin.com.my, online marketplaces (Shopee/Lazada price surveys)
+#   - Document both standard-size and plus-size prices for the same item type
+#     so the price premium can be calculated.
+#
+# Column definitions:
+#   item_type      : garment category, e.g. 'shirt', 'trousers', 'shoes', 'underwear', 'outerwear'
+#   size_category  : 'standard' (sizes XS–XL) or 'plus_size' (sizes 2XL and above)
+#   price_myr      : retail price in Malaysian Ringgit (float)
+#   retailer       : store or platform name (string)
+#   source         : data source citation or URL (string)
+#   year           : price reference year (integer)

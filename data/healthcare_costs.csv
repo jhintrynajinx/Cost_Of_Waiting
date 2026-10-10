@@ -1,0 +1,22 @@
+condition,cost_type,cost_myr,probability_obese,probability_normal,age_onset_min,age_onset_max,source,year
+# Instructions: populate rows with real data.
+# Suggested sources:
+#   - MOH Malaysia Clinical Practice Guidelines (CPGs): https://www.moh.gov.my
+#   - Institute for Public Health (IPH) — National Health and Morbidity Survey (NHMS)
+#   - MOH Malaysia Health Technology Assessment Section (MaHTAS) reports
+#   - Published Malaysian economic burden of disease studies (PubMed, Google Scholar)
+#   - PharmADEx / DUOPHARMA local drug pricing for medications
+#
+# Column definitions:
+#   condition          : medical condition, e.g. 'type_2_diabetes', 'hypertension',
+#                         'dyslipidaemia', 'obstructive_sleep_apnoea',
+#                         'osteoarthritis_knee', 'cardiovascular_event', 'colorectal_cancer'
+#   cost_type          : 'annual_monitoring'  — recurring annual cost (GP visits, labs, medications)
+#                         'acute_event'        — one-off event cost (hospitalisation, surgery)
+#   cost_myr           : cost in Malaysian Ringgit for this event/year (float)
+#   probability_obese  : annual probability that an obese person incurs this cost (float, 0–1)
+#   probability_normal : annual probability that a healthy-weight person incurs this cost (float, 0–1)
+#   age_onset_min      : minimum age at which this condition is applicable (integer)
+#   age_onset_max      : maximum age at which this condition is applicable (integer, use 80 for lifetime)
+#   source             : data source citation (string)
+#   year               : reference year (integer)

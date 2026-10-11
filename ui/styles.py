@@ -239,10 +239,15 @@ div[data-testid="stSlider"] div[data-rac] div[style*="font-size"] {
 
 /* ==========================================================================
    BUTTONS (Primary & Secondary / Outline)
+   Streamlit ≥1.45 renders buttons with data-testid="baseButton-secondary"
+   and data-testid="baseButton-primary". The old button[kind] attribute
+   selector never matched, causing primary buttons to inherit secondary
+   styles and secondary buttons to go black on active/focus.
    ========================================================================== */
 
-/* Base button styling */
-div.stButton > button {
+/* ---------- Secondary / default buttons ---------- */
+div.stButton > button,
+button[data-testid="baseButton-secondary"] {
     border-radius: 8px !important;
     font-family: 'Plus Jakarta Sans', sans-serif !important;
     font-size: 13.5px !important;
@@ -255,16 +260,45 @@ div.stButton > button {
     padding: 6px 16px !important;
 }
 
-/* Secondary button hover state */
-div.stButton > button:hover {
+div.stButton > button:hover,
+button[data-testid="baseButton-secondary"]:hover {
     background-color: #f8fafc !important;
     color: #0f766e !important;
     border-color: #0f766e !important;
     box-shadow: 0 2px 4px rgba(15, 118, 110, 0.1) !important;
 }
 
-/* Primary prominent button (e.g. Generate Trajectory) */
-div.stButton > button[kind="primary"] {
+div.stButton > button:focus,
+button[data-testid="baseButton-secondary"]:focus {
+    background-color: #ffffff !important;
+    color: #0b1c30 !important;
+    border-color: #0f766e !important;
+    outline: none !important;
+    box-shadow: 0 0 0 2px rgba(15, 118, 110, 0.25) !important;
+}
+
+div.stButton > button:active,
+button[data-testid="baseButton-secondary"]:active {
+    background-color: #f0fdfa !important;
+    color: #0b1c30 !important;
+    border-color: #0f766e !important;
+}
+
+div.stButton > button:disabled,
+button[data-testid="baseButton-secondary"]:disabled {
+    background-color: #f8fafc !important;
+    color: #94a3b8 !important;
+    border-color: #e2e8f0 !important;
+    cursor: not-allowed !important;
+}
+
+/* ---------- Primary buttons (Generate Trajectory) ----------
+   Streamlit 1.45+ renders data-testid="baseButton-primary"
+   instead of the old button[kind="primary"] attribute.
+   Both selectors are included for forward/backward compatibility.
+   ---------------------------------------------------------------- */
+div.stButton > button[kind="primary"],
+button[data-testid="baseButton-primary"] {
     background-color: #0f766e !important;
     color: #ffffff !important;
     border: none !important;
@@ -273,10 +307,26 @@ div.stButton > button[kind="primary"] {
     box-shadow: 0 2px 4px rgba(15, 118, 110, 0.25) !important;
     padding: 8px 20px !important;
 }
-div.stButton > button[kind="primary"]:hover {
+
+div.stButton > button[kind="primary"]:hover,
+button[data-testid="baseButton-primary"]:hover {
     background-color: #0d655f !important;
     color: #ffffff !important;
     box-shadow: 0 4px 8px rgba(15, 118, 110, 0.35) !important;
+}
+
+div.stButton > button[kind="primary"]:focus,
+button[data-testid="baseButton-primary"]:focus {
+    background-color: #0f766e !important;
+    color: #ffffff !important;
+    outline: none !important;
+    box-shadow: 0 0 0 2px rgba(15, 118, 110, 0.45) !important;
+}
+
+div.stButton > button[kind="primary"]:active,
+button[data-testid="baseButton-primary"]:active {
+    background-color: #0a514c !important;
+    color: #ffffff !important;
 }
 
 /* ==========================================================================
@@ -387,17 +437,32 @@ div.stButton > button[kind="primary"]:hover {
     padding: 1.25rem;
 }
 
-/* Expander styling */
+/* Expander styling
+   Streamlit 1.65 wraps expander summary text in a <p> and may apply
+   a dark CSS variable — target the summary and all descendants explicitly.
+*/
 div[data-testid="stExpander"] {
     background: #f8fafc !important;
     border: 1px solid #e2e8f0 !important;
     border-radius: 8px !important;
     margin-bottom: 8px !important;
 }
-div[data-testid="stExpander"] details summary {
+div[data-testid="stExpander"] details summary,
+div[data-testid="stExpander"] details summary p,
+div[data-testid="stExpander"] details summary span,
+div[data-testid="stExpander"] details summary svg {
     color: #0b1c30 !important;
+    fill: #0b1c30 !important;
     font-size: 13.5px !important;
     font-weight: 600 !important;
+}
+div[data-testid="stExpander"] details summary:hover,
+div[data-testid="stExpander"] details summary:hover p,
+div[data-testid="stExpander"] details summary:hover span {
+    color: #0f766e !important;
+}
+div[data-testid="stExpander"] details summary:hover svg {
+    fill: #0f766e !important;
 }
 
 /* ==========================================================================
@@ -536,6 +601,40 @@ div[data-testid="stPlotlyChart"] {
     margin-top: 2rem;
     color: #64748b;
     font-size: 12px;
+}
+
+/* ==========================================================================
+   SCROLLBARS — match app's teal/slate theme
+   Supported in Chromium (Chrome, Edge, Electron-based Streamlit viewer)
+   and WebKit (Safari). Firefox uses scrollbar-color / scrollbar-width.
+   Does not break keyboard or mouse scrolling.
+   ========================================================================== */
+
+/* Chromium / WebKit scrollbar — thin, theme-matched */
+::-webkit-scrollbar {
+    width: 7px;
+    height: 7px;
+}
+::-webkit-scrollbar-track {
+    background: #f1f5f9;
+    border-radius: 4px;
+}
+::-webkit-scrollbar-thumb {
+    background: #94a3b8;
+    border-radius: 4px;
+    border: 1px solid #f1f5f9;
+}
+::-webkit-scrollbar-thumb:hover {
+    background: #0f766e;
+}
+::-webkit-scrollbar-corner {
+    background: #f1f5f9;
+}
+
+/* Firefox scrollbar (thin, theme-matched) */
+* {
+    scrollbar-width: thin;
+    scrollbar-color: #94a3b8 #f1f5f9;
 }
 </style>
 """

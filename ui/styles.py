@@ -62,7 +62,11 @@ h4 {
     color: #0b1c30 !important;
 }
 
-p, span, div {
+/* Global typography colour — scoped away from button and expander internals
+   so that explicit button/expander colour rules are not fought by this broad rule. */
+p:not(button p):not(summary p),
+span:not(button span):not(summary span),
+div:not(button div):not(summary div) {
     font-family: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
     color: #0b1c30;
 }
@@ -245,7 +249,11 @@ div[data-testid="stSlider"] div[data-rac] div[style*="font-size"] {
    styles and secondary buttons to go black on active/focus.
    ========================================================================== */
 
-/* ---------- Secondary / default buttons ---------- */
+/* ---------- Secondary / default buttons ----------
+   Target both the button element AND the inner <p>/<span>/<div> that
+   Streamlit 1.65 renders inside the button, so the broad p/span/div
+   typography rule cannot bleed through and make labels look black.
+   ---------------------------------------------------------------- */
 div.stButton > button,
 button[data-testid="baseButton-secondary"] {
     border-radius: 8px !important;
@@ -259,6 +267,16 @@ button[data-testid="baseButton-secondary"] {
     box-shadow: 0 1px 2px rgba(11, 28, 48, 0.04) !important;
     padding: 6px 16px !important;
 }
+/* Inner text elements — explicitly inherit button's colour */
+div.stButton > button p,
+div.stButton > button span,
+div.stButton > button div,
+button[data-testid="baseButton-secondary"] p,
+button[data-testid="baseButton-secondary"] span,
+button[data-testid="baseButton-secondary"] div {
+    color: inherit !important;
+    font-family: inherit !important;
+}
 
 div.stButton > button:hover,
 button[data-testid="baseButton-secondary"]:hover {
@@ -266,6 +284,14 @@ button[data-testid="baseButton-secondary"]:hover {
     color: #0f766e !important;
     border-color: #0f766e !important;
     box-shadow: 0 2px 4px rgba(15, 118, 110, 0.1) !important;
+}
+div.stButton > button:hover p,
+div.stButton > button:hover span,
+div.stButton > button:hover div,
+button[data-testid="baseButton-secondary"]:hover p,
+button[data-testid="baseButton-secondary"]:hover span,
+button[data-testid="baseButton-secondary"]:hover div {
+    color: inherit !important;
 }
 
 div.stButton > button:focus,
@@ -293,9 +319,10 @@ button[data-testid="baseButton-secondary"]:disabled {
 }
 
 /* ---------- Primary buttons (Generate Trajectory) ----------
-   Streamlit 1.45+ renders data-testid="baseButton-primary"
-   instead of the old button[kind="primary"] attribute.
-   Both selectors are included for forward/backward compatibility.
+   Streamlit 1.45+ renders data-testid="baseButton-primary".
+   Both the old kind attribute and the new data-testid are targeted.
+   Inner <p>/<span>/<div> are explicitly forced to white so the broad
+   p/span/div rule cannot make primary button text dark on teal.
    ---------------------------------------------------------------- */
 div.stButton > button[kind="primary"],
 button[data-testid="baseButton-primary"] {
@@ -306,6 +333,15 @@ button[data-testid="baseButton-primary"] {
     font-weight: 700 !important;
     box-shadow: 0 2px 4px rgba(15, 118, 110, 0.25) !important;
     padding: 8px 20px !important;
+}
+div.stButton > button[kind="primary"] p,
+div.stButton > button[kind="primary"] span,
+div.stButton > button[kind="primary"] div,
+button[data-testid="baseButton-primary"] p,
+button[data-testid="baseButton-primary"] span,
+button[data-testid="baseButton-primary"] div {
+    color: #ffffff !important;
+    font-family: inherit !important;
 }
 
 div.stButton > button[kind="primary"]:hover,
@@ -438,8 +474,9 @@ button[data-testid="baseButton-primary"]:active {
 }
 
 /* Expander styling
-   Streamlit 1.65 wraps expander summary text in a <p> and may apply
-   a dark CSS variable — target the summary and all descendants explicitly.
+   Streamlit 1.65 wraps expander summary text in a <p>. The broad
+   p/span/div rule is now excluded from summary children via :not(),
+   but we also set explicit colours here for belt-and-braces certainty.
 */
 div[data-testid="stExpander"] {
     background: #f8fafc !important;
@@ -447,16 +484,29 @@ div[data-testid="stExpander"] {
     border-radius: 8px !important;
     margin-bottom: 8px !important;
 }
-div[data-testid="stExpander"] details summary,
-div[data-testid="stExpander"] details summary p,
-div[data-testid="stExpander"] details summary span,
-div[data-testid="stExpander"] details summary svg {
+/* Summary row — container */
+div[data-testid="stExpander"] details summary {
     color: #0b1c30 !important;
-    fill: #0b1c30 !important;
+    font-size: 13.5px !important;
+    font-weight: 600 !important;
+    background: transparent !important;
+}
+/* Summary inner text elements — force light-theme colours */
+div[data-testid="stExpander"] details summary p,
+div[data-testid="stExpander"] details summary span {
+    color: #0b1c30 !important;
     font-size: 13.5px !important;
     font-weight: 600 !important;
 }
-div[data-testid="stExpander"] details summary:hover,
+/* Summary chevron icon */
+div[data-testid="stExpander"] details summary svg {
+    fill: #475569 !important;
+    color: #475569 !important;
+}
+/* Hover state — teal accent */
+div[data-testid="stExpander"] details summary:hover {
+    color: #0f766e !important;
+}
 div[data-testid="stExpander"] details summary:hover p,
 div[data-testid="stExpander"] details summary:hover span {
     color: #0f766e !important;
@@ -631,8 +681,11 @@ div[data-testid="stPlotlyChart"] {
     background: #f1f5f9;
 }
 
-/* Firefox scrollbar (thin, theme-matched) */
-* {
+/* Firefox scrollbar (thin, theme-matched)
+   Scoped to html (not *) so individual scrollable elements
+   are not independently overridden, which could conflict with
+   Streamlit's internal scrollable containers. */
+html {
     scrollbar-width: thin;
     scrollbar-color: #94a3b8 #f1f5f9;
 }
